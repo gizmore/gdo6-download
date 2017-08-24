@@ -13,7 +13,7 @@ $user = User::current();
     <md-card-title-text>
       <span class="md-headline">
         <div>“<?= html($gdo->getTitle()); ?>” - <?= $gdo->getCreator()->renderCell(); ?></div>
-        <div class="gdo-card-date"><?= l($gdo->getCreateDate()); ?></div>
+        <div class="gdo-card-date"><?= t($gdo->getCreateDate()); ?></div>
       </span>
     </md-card-title-text>
   </md-card-title>

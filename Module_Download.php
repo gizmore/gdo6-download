@@ -52,8 +52,8 @@ final class Module_Download extends Module
 		return $this->templatePHP('tabs.php');
 	}
 
-	public function onRenderFor(GDO_Bar $navbar)
+	public function hookLeftBar(GDO_Bar $navbar)
 	{
-		$this->templatePHP('sidebars.php', ['navbar' => $navbar]);
+		$this->templatePHP('leftbar.php', ['navbar' => $navbar]);
 	}
 }

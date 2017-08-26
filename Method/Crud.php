@@ -1,6 +1,7 @@
 <?php
 namespace GDO\Download\Method;
 
+use GDO\DB\GDO;
 use GDO\Date\Time;
 use GDO\Download\Download;
 use GDO\Download\Module_Download;
@@ -59,12 +60,12 @@ final class Crud extends MethodCrud
 		}
 	}
 
-	public function afterCreate(GDO_Form $form)
+	public function afterCreate(GDO_Form $form, GDO $gdo)
 	{
 		$user = User::current();
 		if ($user->isStaff())
 		{
-			$this->gdo->saveVars(array(
+			$gdo->saveVars(array(
 				'dl_accepted' => Time::getDate(),
 				'dl_acceptor' => User::SYSTEM_ID,
 			), false);

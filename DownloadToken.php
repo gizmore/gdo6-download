@@ -23,7 +23,7 @@ final class DownloadToken extends GDO implements Orderable
 	#############
 	### Order ###
 	#############
-	public function getOrderCancelURL(User $user) { return url('Download', 'List'); }
+	public function getOrderCancelURL(User $user) { return url('Download', 'FileList'); }
 	public function getOrderSuccessURL(User $user) { return url('Download', 'View', 'id='.$this->getDownloadID()); }
 	public function getOrderTitle(string $iso) { return tiso($iso, 'card_title_downloadtoken', [html($this->getDowload()->getTitle())]); }
 	public function getOrderPrice() { return $this->getDowload()->getPrice(); }

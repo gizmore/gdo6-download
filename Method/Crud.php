@@ -23,7 +23,7 @@ use GDO\User\User;
 final class Crud extends MethodCrud
 {
 	public function gdoTable() { return Download::table(); }
-	public function hrefList() { return href('Download', 'List'); }
+	public function hrefList() { return href('Download', 'FileList'); }
 	
 	public function execute()
 	{

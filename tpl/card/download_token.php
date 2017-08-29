@@ -1,11 +1,11 @@
 <?php 
-use GDO\Download\DownloadToken;
-use GDO\User\User;
-$gdo instanceof DownloadToken;
+use GDO\Download\GDO_DownloadToken;
+use GDO\User\GDO_User;
+$gdo instanceof GDO_DownloadToken;
 $dl = $gdo->getDowload();
 $file = $dl->getFile(); ?>
 <?php
-$user = User::current();
+$user = GDO_User::current();
 ?>
 <md-card class="gdo-downloadtoken">
   <md-card-title>

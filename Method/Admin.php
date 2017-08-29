@@ -2,7 +2,7 @@
 namespace GDO\Download\Method;
 
 use GDO\Admin\MethodAdmin;
-use GDO\Download\Download;
+use GDO\Download\GDO_Download;
 use GDO\Table\MethodQueryTable;
 
 final class Admin extends MethodQueryTable
@@ -19,6 +19,6 @@ final class Admin extends MethodQueryTable
 	
 	public function getQuery()
 	{
-		return Download::table()->select();
+	    return GDO_Download::table()->select();
 	}
 }

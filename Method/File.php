@@ -3,20 +3,20 @@ namespace GDO\Download\Method;
 
 use GDO\Core\GDT_Hook;
 use GDO\Core\Method;
-use GDO\Download\Download;
-use GDO\User\User;
+use GDO\Download\GDO_Download;
+use GDO\User\GDO_User;
 use GDO\Util\Common;
 
 final class File extends Method
 {
 	public function execute()
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		$id = Common::getGetString('id', 'id');
-		$download = Download::table()->findById($id);
+		$download = GDO_Download::table()->findById($id);
 		if (!$download->canDownload($user))
 		{
-			Download::notFoundException(html($id));
+		    GDO_Download::notFoundException(html($id));
 		}
 		
 		$download->increase('dl_downloads');

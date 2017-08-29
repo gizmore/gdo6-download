@@ -1,6 +1,6 @@
 <?php
 return array(
-'gwf_download' => 'Download',
+'gdo_download' => 'Download',
 'downloads' => 'Downloads',
 ###########################################################################
 'link_downloads' => '%s Downloads',

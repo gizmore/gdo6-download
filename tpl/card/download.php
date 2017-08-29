@@ -1,12 +1,12 @@
 <?php
-use GDO\Download\Download;
+use GDO\Download\GDO_Download;
 use GDO\UI\GDT_Button;
-use GDO\User\User;
+use GDO\User\GDO_User;
 
-$gdo instanceof Download;
+$gdo instanceof GDO_Download;
 $file = $gdo->getFile(); ?>
 <?php
-$user = User::current();
+$user = GDO_User::current();
 ?>
 <md-card class="gdo-download">
   <md-card-title>

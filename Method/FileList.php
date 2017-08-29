@@ -1,10 +1,10 @@
 <?php
 namespace GDO\Download\Method;
 
-use GDO\Download\Download;
+use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;
 use GDO\Table\MethodQueryCards;
-use GDO\File\File;
+use GDO\File\GDO_File;
 /**
  * 
  * @author gizmore
@@ -26,18 +26,18 @@ final class FileList extends MethodQueryCards
 	
 	public function gdoTable()
 	{
-		return Download::table();
+	    return GDO_Download::table();
 	}
 	
 	public function gdoQuery()
 	{
-		return Download::table()->select('*, gwf_file.*')->joinObject('dl_file')->where("dl_deleted IS NULL AND dl_accepted IS NOT NULL");
+	    return GDO_Download::table()->select('*, gdo_file.*')->joinObject('dl_file')->where("dl_deleted IS NULL AND dl_accepted IS NOT NULL");
 	}
 	
 	public function gdoFilters()
 	{
-		$gdo = Download::table();
-		$file = File::table();
+	    $gdo = GDO_Download::table();
+	    $file = GDO_File::table();
 		return array(
 // 			GDT_EditButton::make(),
 // 			$gdo->gdoColumn('dl_id'),

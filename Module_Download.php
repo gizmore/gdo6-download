@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Download;
 
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 use GDO\Template\GDT_Bar;
 use GDO\Type\GDT_Checkbox;
 use GDO\Type\GDT_Int;
@@ -10,19 +10,19 @@ use GDO\Type\GDT_Int;
  * 
  * @author gizmore
  * @see Module_Payment
- * @see Download
+ * @see GDO_Download
  * 
  * @since 3.0
  * @version 5.0
  */
-final class Module_Download extends Module
+final class Module_Download extends GDO_Module
 {
 	##############
 	### Module ###
 	##############
 	public $module_priority = 70;
 	public function onLoadLanguage() { return $this->loadLanguage('lang/download'); }
-	public function getClasses() { return ['GDO\Download\Download', 'GDO\Download\DownloadVote', 'GDO\Download\DownloadToken']; }
+	public function getClasses() { return ['GDO\Download\GDO_Download', 'GDO\Download\GDO_DownloadVote', 'GDO\Download\GDO_DownloadToken']; }
 	public function href_administrate_module() { return href('Download', 'Admin'); }
 
 	##############

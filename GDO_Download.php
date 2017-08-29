@@ -12,7 +12,7 @@ use GDO\DB\GDT_DeletedBy;
 use GDO\DB\GDT_EditedAt;
 use GDO\DB\GDT_EditedBy;
 use GDO\Date\GDT_DateTime;
-use GDO\File\File;
+use GDO\File\GDO_File;
 use GDO\File\GDT_File;
 use GDO\Payment\GDT_Money;
 use GDO\Template\GDT_Template;
@@ -21,7 +21,7 @@ use GDO\Type\GDT_Message;
 use GDO\Type\GDT_String;
 use GDO\User\GDT_Level;
 use GDO\User\GDT_User;
-use GDO\User\User;
+use GDO\User\GDO_User;
 use GDO\Vote\GDT_VoteCount;
 use GDO\Vote\GDT_VoteRating;
 use GDO\Vote\WithVotes;
@@ -32,17 +32,17 @@ use GDO\Vote\WithVotes;
  * @since 3.0
  * @version 5.0
  */
-final class Download extends GDO
+final class GDO_Download extends GDO
 {
 	#############
 	### Votes ###
 	#############
 	use WithVotes;
-	public function gdoVoteTable() { return DownloadVote::table(); }
+	public function gdoVoteTable() { return GDO_DownloadVote::table(); }
 	public function gdoVoteMin() { return 1; }
 	public function gdoVoteMax() { return 5; }
 	public function gdoVotesBeforeOutcome() { return Module_Download::instance()->cfgVotesOutcome(); }
-	public function gdoVoteAllowed(User $user) { return $user->getLevel() >= $this->getLevel(); }
+	public function gdoVoteAllowed(GDO_User $user) { return $user->getLevel() >= $this->getLevel(); }
 	
 	###########
 	### GDO ###
@@ -80,12 +80,12 @@ final class Download extends GDO
 
 	public function gdoHashcode() { return self::gdoHashcodeS($this->getVars(['dl_id', 'dl_title', 'dl_category', 'dl_file', 'dl_created', 'dl_creator'])); }
 
-	public function canView(User $user) { return ($this->isAccepted() && (!$this->isDeleted())) || $user->isStaff(); }
-	public function canDownload(User $user)
+	public function canView(GDO_User $user) { return ($this->isAccepted() && (!$this->isDeleted())) || $user->isStaff(); }
+	public function canDownload(GDO_User $user)
 	{
 		if ($this->isPaid())
 		{
-			if (!DownloadToken::hasToken($user, $this))
+		    if (!GDO_DownloadToken::hasToken($user, $this))
 			{
 				return false;
 			}
@@ -115,7 +115,7 @@ final class Download extends GDO
 	##############
 	
 	/**
-	 * @return File
+	 * @return GDO_File
 	 */
 	public function getFile() { return $this->getValue('dl_file'); }
 	public function getFileID() { return $this->getVar('dl_file'); }
@@ -159,16 +159,16 @@ final class Download extends GDO
 	##############
 	public static function countDownloads()
 	{
-		if (false === ($cached = Cache::get('gwf_download_count')))
+		if (false === ($cached = Cache::get('gdo_download_count')))
 		{
 			$cached = self::table()->countWhere("dl_deleted IS NULL AND dl_accepted IS NOT NULL");
-			Cache::set('gwf_download_count', $cached);
+			Cache::set('gdo_download_count', $cached);
 		}
 		return $cached;
 	}
 	
 	public function gdoAfterCreate()
 	{
-		Cache::unset('gwf_download_count');
+		Cache::unset('gdo_download_count');
 	}
 }

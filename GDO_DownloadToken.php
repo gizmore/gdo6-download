@@ -11,20 +11,20 @@ use GDO\Template\GDT_Template;
 use GDO\Template\Message;
 use GDO\Type\GDT_Token;
 use GDO\User\GDT_User;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Purchasable download token. 
  * @author gizmore
  * @since 3.0
  * @version 5.0
  */
-final class DownloadToken extends GDO implements Orderable
+final class GDO_DownloadToken extends GDO implements Orderable
 {
 	#############
 	### Order ###
 	#############
-	public function getOrderCancelURL(User $user) { return url('Download', 'FileList'); }
-	public function getOrderSuccessURL(User $user) { return url('Download', 'View', 'id='.$this->getDownloadID()); }
+	public function getOrderCancelURL(GDO_User $user) { return url('Download', 'FileList'); }
+	public function getOrderSuccessURL(GDO_User $user) { return url('Download', 'View', 'id='.$this->getDownloadID()); }
 	public function getOrderTitle(string $iso) { return tiso($iso, 'card_title_downloadtoken', [html($this->getDowload()->getTitle())]); }
 	public function getOrderPrice() { return $this->getDowload()->getPrice(); }
 	public function canPayOrderWith(PaymentModule $module) { return true; }
@@ -42,7 +42,7 @@ final class DownloadToken extends GDO implements Orderable
 	{
 		return array(
 			GDT_User::make('dlt_user')->primary(),
-			GDT_Object::make('dlt_download')->table(Download::table())->primary(),
+		    GDT_Object::make('dlt_download')->table(GDO_Download::table())->primary(),
 			GDT_Token::make('dlt_token')->notNull(),
 			GDT_CreatedAt::make('dlt_created'),
 			GDT_CreatedBy::make('dlt_creator'),
@@ -56,7 +56,7 @@ final class DownloadToken extends GDO implements Orderable
 	public function getUserID() { return $this->getVar('dlt_user'); }
 
 	/**
-	 * @return Download
+	 * @return GDO_Download
 	 */
 	public function getDowload() { return $this->getValue('dlt_download'); }
 	public function getDowloadID() { return $this->getVar('dlt_download'); }
@@ -68,7 +68,7 @@ final class DownloadToken extends GDO implements Orderable
 	public function getCreatedAt() { return $this->getVar('dlt_created'); }
 	public function getToken() { return $this->getVar('dlt_token'); }
 	
-	public static function hasToken(User $user, Download $dl)
+	public static function hasToken(GDO_User $user, GDO_Download $dl)
 	{
 		return self::table()->select('1')->where("dlt_user={$user->getID()} AND dlt_download={$dl->getID()}")->first()->exec()->fetchValue() === '1';
 	}

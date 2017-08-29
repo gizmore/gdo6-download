@@ -3,7 +3,7 @@ namespace GDO\Download\Method;
 
 use GDO\Core\Method;
 use GDO\Date\Time;
-use GDO\Download\Download;
+use GDO\Download\GDO_Download;
 use GDO\Util\Common;
 
 final class Accept extends Method
@@ -12,7 +12,7 @@ final class Accept extends Method
 	
 	public function execute()
 	{
-		$table = Download::table();
+	    $table = GDO_Download::table();
 		$id = Common::getGetString('id', '0');
 		if ( (!($download = $table->find($id, false))) || 
 			 ($download->gdoHashcode() !== Common::getGetString('token')) )

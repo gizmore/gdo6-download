@@ -3,7 +3,7 @@ namespace GDO\Download\Method;
 
 use GDO\DB\GDO;
 use GDO\Date\Time;
-use GDO\Download\Download;
+use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;
 use GDO\Form\GDT_Form;
 use GDO\Form\GDT_Submit;
@@ -11,18 +11,18 @@ use GDO\Form\MethodCrud;
 use GDO\Language\Trans;
 use GDO\Mail\Mail;
 use GDO\UI\GDT_Link;
-use GDO\User\User;
+use GDO\User\GDO_User;
 /**
  * Download form.
  * 
  * @author gizmore
  * @since 5.0
  * @version 5.0
- * @see Download
+ * @see GDO_Download
  */
 final class Crud extends MethodCrud
 {
-	public function gdoTable() { return Download::table(); }
+    public function gdoTable() { return GDO_Download::table(); }
 	public function hrefList() { return href('Download', 'FileList'); }
 	
 	public function execute()
@@ -39,7 +39,7 @@ final class Crud extends MethodCrud
 	
 	public function createForm(GDT_Form $form)
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		parent::createForm($form);
 		if (!$user->hasPermission('staff'))
 		{
@@ -50,7 +50,7 @@ final class Crud extends MethodCrud
 	public function createFormButtons(GDT_Form $form)
 	{
 		parent::createFormButtons($form);
-		$user = User::current();
+		$user = GDO_User::current();
 		if ($user->isStaff())
 		{
 			if ($this->gdo && !$this->gdo->isAccepted())
@@ -62,12 +62,12 @@ final class Crud extends MethodCrud
 
 	public function afterCreate(GDT_Form $form, GDO $gdo)
 	{
-		$user = User::current();
+		$user = GDO_User::current();
 		if ($user->isStaff())
 		{
 			$gdo->saveVars(array(
 				'dl_accepted' => Time::getDate(),
-				'dl_acceptor' => User::SYSTEM_ID,
+				'dl_acceptor' => GDO_User::SYSTEM_ID,
 			), false);
 		}
 		else
@@ -83,7 +83,7 @@ final class Crud extends MethodCrud
 	private function onAcceptMail(GDT_Form $form)
 	{
 		$iso = Trans::$ISO;
-		foreach (User::admins() as $admin)
+		foreach (GDO_User::admins() as $admin)
 		{
 			Trans::$ISO = $admin->getLangISO();
 			$this->onAcceptMailTo($form, $admin);
@@ -91,9 +91,9 @@ final class Crud extends MethodCrud
 		Trans::$ISO = $iso;
 	}
 
-	private function onAcceptMailTo(GDT_Form $form, User $user)
+	private function onAcceptMailTo(GDT_Form $form, GDO_User $user)
 	{
-		$dl = $this->gdo; $dl instanceof Download;
+	    $dl = $this->gdo; $dl instanceof GDO_Download;
 
 		# Sender
 		$mail = new Mail();

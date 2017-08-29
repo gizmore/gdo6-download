@@ -1,6 +1,6 @@
 <?php
 use GDO\Download\Download;
-use GDO\UI\GDO_Button;
+use GDO\UI\GDT_Button;
 use GDO\User\User;
 
 $gdo instanceof Download;
@@ -36,11 +36,11 @@ $user = User::current();
 <?php
 if ($gdo->canDownload($user))
 {
-	echo GDO_Button::make('download')->icon('file_download')->href(href('Download', 'File', '&id='.$gdo->getID()))->renderCell();
+	echo GDT_Button::make('download')->icon('file_download')->href(href('Download', 'File', '&id='.$gdo->getID()))->renderCell();
 }
 elseif ($gdo->canPurchase($user))
 {
-	echo GDO_Button::make('purchase')->icon('attach_money')->href(href('Download', 'Order', '&id='.$gdo->getID()))->renderCell();
+	echo GDT_Button::make('purchase')->icon('attach_money')->href(href('Download', 'Order', '&id='.$gdo->getID()))->renderCell();
 }
 else
 {

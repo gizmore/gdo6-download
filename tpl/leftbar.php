@@ -1,7 +1,7 @@
 <?php 
 use GDO\Download\Download;
-use GDO\Template\GDO_Bar;
-use GDO\UI\GDO_Link;
-$navbar instanceof GDO_Bar;
+use GDO\Template\GDT_Bar;
+use GDO\UI\GDT_Link;
+$navbar instanceof GDT_Bar;
 $count = Download::countDownloads();
-$navbar->addField(GDO_Link::make('a')->label('link_downloads', [$count])->href(href('Download', 'FileList')));
+$navbar->addField(GDT_Link::make('a')->label('link_downloads', [$count])->href(href('Download', 'FileList')));

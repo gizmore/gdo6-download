@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Download\Method;
 
-use GDO\Core\GDO_Hook;
+use GDO\Core\GDT_Hook;
 use GDO\Core\Method;
 use GDO\Download\Download;
 use GDO\User\User;
@@ -21,7 +21,7 @@ final class File extends Method
 		
 		$download->increase('dl_downloads');
 		
-		GDO_Hook::call('DownloadFile', $user, $download);
+		GDT_Hook::call('DownloadFile', $user, $download);
 		
 		return method('GWF', 'GetFile')->executeWithId($download->getFileID());
 	}

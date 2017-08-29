@@ -5,12 +5,12 @@ use GDO\DB\GDO;
 use GDO\Date\Time;
 use GDO\Download\Download;
 use GDO\Download\Module_Download;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodCrud;
 use GDO\Language\Trans;
 use GDO\Mail\Mail;
-use GDO\UI\GDO_Link;
+use GDO\UI\GDT_Link;
 use GDO\User\User;
 /**
  * Download form.
@@ -37,7 +37,7 @@ final class Crud extends MethodCrud
 	    $this->title(t('ft_download_upload', [sitename()]));
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$user = User::current();
 		parent::createForm($form);
@@ -47,7 +47,7 @@ final class Crud extends MethodCrud
 		}
 	}
 	
-	public function createFormButtons(GDO_Form $form)
+	public function createFormButtons(GDT_Form $form)
 	{
 		parent::createFormButtons($form);
 		$user = User::current();
@@ -55,12 +55,12 @@ final class Crud extends MethodCrud
 		{
 			if ($this->gdo && !$this->gdo->isAccepted())
 			{
-				$form->addField(GDO_Submit::make('accept'));
+				$form->addField(GDT_Submit::make('accept'));
 			}
 		}
 	}
 
-	public function afterCreate(GDO_Form $form, GDO $gdo)
+	public function afterCreate(GDT_Form $form, GDO $gdo)
 	{
 		$user = User::current();
 		if ($user->isStaff())
@@ -80,7 +80,7 @@ final class Crud extends MethodCrud
 	###################
 	### Accept Mail ###
 	###################
-	private function onAcceptMail(GDO_Form $form)
+	private function onAcceptMail(GDT_Form $form)
 	{
 		$iso = Trans::$ISO;
 		foreach (User::admins() as $admin)
@@ -91,7 +91,7 @@ final class Crud extends MethodCrud
 		Trans::$ISO = $iso;
 	}
 
-	private function onAcceptMailTo(GDO_Form $form, User $user)
+	private function onAcceptMailTo(GDT_Form $form, User $user)
 	{
 		$dl = $this->gdo; $dl instanceof Download;
 
@@ -109,7 +109,7 @@ final class Crud extends MethodCrud
 		$info = $dl->displayInfo();
 		$uploader = $dl->getCreator()->displayNameLabel();
 		
-		$link = GDO_Link::anchor(url('Download', 'Approve', "&id={$dl->getID()}&token={$dl->gdoHashcode()}"));
+		$link = GDT_Link::anchor(url('Download', 'Approve', "&id={$dl->getID()}&token={$dl->gdoHashcode()}"));
 		$args = [$username, $sitename, $type, $size, $title, $info, $uploader, $link];
 		$mail->setBody(t('mail_body_download_pending', $args));
 		$mail->setSubject(t('mail_subj_download_pending', [$sitename]));

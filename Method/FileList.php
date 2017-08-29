@@ -39,7 +39,7 @@ final class FileList extends MethodQueryCards
 		$gdo = Download::table();
 		$file = File::table();
 		return array(
-// 			GDO_EditButton::make(),
+// 			GDT_EditButton::make(),
 // 			$gdo->gdoColumn('dl_id'),
 			$gdo->gdoColumn('dl_title'),
 			$file->gdoColumn('file_size'),
@@ -47,7 +47,7 @@ final class FileList extends MethodQueryCards
 			$gdo->gdoColumn('dl_price'),
 			$gdo->gdoColumn('dl_votes'),
 			$gdo->gdoColumn('dl_rating'),
-// 			GDO_Button::make('view'),
+// 			GDT_Button::make('view'),
 		);
 	}
 }

@@ -2,9 +2,9 @@
 namespace GDO\Download;
 
 use GDO\Core\Module;
-use GDO\Template\GDO_Bar;
-use GDO\Type\GDO_Checkbox;
-use GDO\Type\GDO_Int;
+use GDO\Template\GDT_Bar;
+use GDO\Type\GDT_Checkbox;
+use GDO\Type\GDT_Int;
 /**
  * Download module with automated payment processing.
  * 
@@ -31,11 +31,11 @@ final class Module_Download extends Module
 	public function getConfig()
 	{
 		return array(
-			GDO_Checkbox::make('dl_upload_guest')->initial('1'),
-			GDO_Checkbox::make('dl_download_guest')->initial('1'),
-			GDO_Checkbox::make('dl_votes')->initial('1'),
-			GDO_Checkbox::make('dl_vote_guest')->initial('1'),
-			GDO_Int::make('dl_votes_outcome')->unsigned()->initial('3'),
+			GDT_Checkbox::make('dl_upload_guest')->initial('1'),
+			GDT_Checkbox::make('dl_download_guest')->initial('1'),
+			GDT_Checkbox::make('dl_votes')->initial('1'),
+			GDT_Checkbox::make('dl_vote_guest')->initial('1'),
+			GDT_Int::make('dl_votes_outcome')->unsigned()->initial('3'),
 		);
 	}
 	public function cfgGuestUploads() { return $this->getConfigValue('dl_upload_guest'); }
@@ -52,7 +52,7 @@ final class Module_Download extends Module
 		return $this->templatePHP('tabs.php');
 	}
 
-	public function hookLeftBar(GDO_Bar $navbar)
+	public function hookLeftBar(GDT_Bar $navbar)
 	{
 		$this->templatePHP('leftbar.php', ['navbar' => $navbar]);
 	}

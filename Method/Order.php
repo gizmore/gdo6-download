@@ -3,7 +3,7 @@ namespace GDO\Download\Method;
 
 use GDO\Download\Download;
 use GDO\Download\DownloadToken;
-use GDO\Form\GDO_Form;
+use GDO\Form\GDT_Form;
 use GDO\Payment\Payment_Order;
 use GDO\User\User;
 use GDO\Util\Common;
@@ -25,7 +25,7 @@ final class Order extends Payment_Order
 		return $this->initOrderable();
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		
 	}

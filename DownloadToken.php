@@ -2,15 +2,15 @@
 namespace GDO\Download;
 
 use GDO\DB\GDO;
-use GDO\DB\GDO_CreatedAt;
-use GDO\DB\GDO_CreatedBy;
-use GDO\DB\GDO_Object;
+use GDO\DB\GDT_CreatedAt;
+use GDO\DB\GDT_CreatedBy;
+use GDO\DB\GDT_Object;
 use GDO\Payment\Orderable;
 use GDO\Payment\PaymentModule;
-use GDO\Template\GDO_Template;
+use GDO\Template\GDT_Template;
 use GDO\Template\Message;
-use GDO\Type\GDO_Token;
-use GDO\User\GDO_User;
+use GDO\Type\GDT_Token;
+use GDO\User\GDT_User;
 use GDO\User\User;
 /**
  * Purchasable download token. 
@@ -41,11 +41,11 @@ final class DownloadToken extends GDO implements Orderable
 	public function gdoColumns()
 	{
 		return array(
-			GDO_User::make('dlt_user')->primary(),
-			GDO_Object::make('dlt_download')->table(Download::table())->primary(),
-			GDO_Token::make('dlt_token')->notNull(),
-			GDO_CreatedAt::make('dlt_created'),
-			GDO_CreatedBy::make('dlt_creator'),
+			GDT_User::make('dlt_user')->primary(),
+			GDT_Object::make('dlt_download')->table(Download::table())->primary(),
+			GDT_Token::make('dlt_token')->notNull(),
+			GDT_CreatedAt::make('dlt_created'),
+			GDT_CreatedBy::make('dlt_creator'),
 		);
 	}
 	
@@ -78,7 +78,7 @@ final class DownloadToken extends GDO implements Orderable
 	##############
 	public function renderCard()
 	{
-	    return GDO_Template::responsePHP('Download', 'card/download_token.php', ['gdo' => $this]);
+	    return GDT_Template::responsePHP('Download', 'card/download_token.php', ['gdo' => $this]);
 	}
 	
 }

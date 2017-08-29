@@ -1,29 +1,29 @@
 <?php
 namespace GDO\Download;
 
-use GDO\Category\GDO_Category;
+use GDO\Category\GDT_Category;
 use GDO\DB\Cache;
 use GDO\DB\GDO;
-use GDO\DB\GDO_AutoInc;
-use GDO\DB\GDO_CreatedAt;
-use GDO\DB\GDO_CreatedBy;
-use GDO\DB\GDO_DeletedAt;
-use GDO\DB\GDO_DeletedBy;
-use GDO\DB\GDO_EditedAt;
-use GDO\DB\GDO_EditedBy;
-use GDO\Date\GDO_DateTime;
+use GDO\DB\GDT_AutoInc;
+use GDO\DB\GDT_CreatedAt;
+use GDO\DB\GDT_CreatedBy;
+use GDO\DB\GDT_DeletedAt;
+use GDO\DB\GDT_DeletedBy;
+use GDO\DB\GDT_EditedAt;
+use GDO\DB\GDT_EditedBy;
+use GDO\Date\GDT_DateTime;
 use GDO\File\File;
-use GDO\File\GDO_File;
-use GDO\Payment\GDO_Money;
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Int;
-use GDO\Type\GDO_Message;
-use GDO\Type\GDO_String;
-use GDO\User\GDO_Level;
-use GDO\User\GDO_User;
+use GDO\File\GDT_File;
+use GDO\Payment\GDT_Money;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Int;
+use GDO\Type\GDT_Message;
+use GDO\Type\GDT_String;
+use GDO\User\GDT_Level;
+use GDO\User\GDT_User;
 use GDO\User\User;
-use GDO\Vote\GDO_VoteCount;
-use GDO\Vote\GDO_VoteRating;
+use GDO\Vote\GDT_VoteCount;
+use GDO\Vote\GDT_VoteRating;
 use GDO\Vote\WithVotes;
 /**
  * A download is votable, likeable, purchasable.
@@ -50,24 +50,24 @@ final class Download extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_AutoInc::make('dl_id'),
-			GDO_String::make('dl_title')->notNull()->label('title'),
-			GDO_Message::make('dl_info')->notNull()->label('info'),
-			GDO_Category::make('dl_category'),
-			GDO_File::make('dl_file')->notNull(),
-			GDO_Int::make('dl_downloads')->unsigned()->notNull()->initial('0')->editable(false)->label('downloads'),
-			GDO_Money::make('dl_price'),
-			GDO_Level::make('dl_level')->notNull()->initial('0'),
-			GDO_VoteCount::make('dl_votes'),
-			GDO_VoteRating::make('dl_rating'),
-			GDO_CreatedAt::make('dl_created'),
-			GDO_CreatedBy::make('dl_creator'),
-			GDO_DateTime::make('dl_accepted')->editable(false)->label('accepted_at'),
-			GDO_User::make('dl_acceptor')->editable(false)->label('accepted_by'),
-			GDO_EditedAt::make('dl_edited'),
-			GDO_EditedBy::make('dl_editor'),
-			GDO_DeletedAt::make('dl_deleted'),
-			GDO_DeletedBy::make('dl_deletor'),
+			GDT_AutoInc::make('dl_id'),
+			GDT_String::make('dl_title')->notNull()->label('title'),
+			GDT_Message::make('dl_info')->notNull()->label('info'),
+			GDT_Category::make('dl_category'),
+			GDT_File::make('dl_file')->notNull(),
+			GDT_Int::make('dl_downloads')->unsigned()->notNull()->initial('0')->editable(false)->label('downloads'),
+			GDT_Money::make('dl_price'),
+			GDT_Level::make('dl_level')->notNull()->initial('0'),
+			GDT_VoteCount::make('dl_votes'),
+			GDT_VoteRating::make('dl_rating'),
+			GDT_CreatedAt::make('dl_created'),
+			GDT_CreatedBy::make('dl_creator'),
+			GDT_DateTime::make('dl_accepted')->editable(false)->label('accepted_at'),
+			GDT_User::make('dl_acceptor')->editable(false)->label('accepted_by'),
+			GDT_EditedAt::make('dl_edited'),
+			GDT_EditedBy::make('dl_editor'),
+			GDT_DeletedAt::make('dl_deleted'),
+			GDT_DeletedBy::make('dl_deletor'),
 		);
 	}
 	
@@ -127,7 +127,7 @@ final class Download extends GDO
 	public function getCreatorID() { return $this->getVar('dl_creator'); }
 	public function getCreateDate() { return $this->getVar('dl_created'); }
 	/**
-	 * @return GDO_Message
+	 * @return GDT_Message
 	 */
 	public function gdoMessage() { return $this->gdoColumn('dl_info'); }
 	
@@ -151,7 +151,7 @@ final class Download extends GDO
 	##############
 	public function renderCard()
 	{
-	    return GDO_Template::responsePHP('Download', 'card/download.php', ['gdo' => $this]);
+	    return GDT_Template::responsePHP('Download', 'card/download.php', ['gdo' => $this]);
 	}
 
 	##############

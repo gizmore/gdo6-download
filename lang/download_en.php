@@ -7,7 +7,17 @@ return array(
 'link_upload' => 'Upload',
 'ft_download_upload' => '[%s] Upload',
 ###########################################################################
-'list_download_list' => '[%s] Downloads',
+'list_filelist' => '[%s] Downloads',
+'li_download_level' => 'Level: %s',
+'li_download_your_level' => 'You: %s',
+'li_download_level_ok' => 'Your level does not restrict you to download this file.',
+'li_download_level_too_low' => 'Your level is too low to download this file.',
+'li_download_count' => 'Downloads: %s',
+'li_download_rating' => 'Rating: %s',
+'li_download_votes' => 'Votes: %s',
+'dlg_download_rate_title' => 'Rate',
+'dlg_download_purchase_title' => 'Purchase',
+'li_download_price' => 'Price: %s',
 ###########################################################################
 'ft_download_order' => '[%s] Purchase File',
 'card_title_downloadtoken' => 'Purchase File &quot;%s&quot;',

@@ -5,12 +5,13 @@ use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;
 use GDO\Table\MethodQueryCards;
 use GDO\File\GDO_File;
+use GDO\Table\MethodQueryList;
 /**
  * 
  * @author gizmore
  *
  */
-final class FileList extends MethodQueryCards
+final class FileList extends MethodQueryList
 {
 	public function isGuestAllowed()
 	{

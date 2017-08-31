@@ -77,9 +77,11 @@ final class GDO_Download extends GDO
 	
 	public function href_edit() { return href('Download', 'Crud', '&id='.$this->getID()); }
 	public function href_view() { return href('Download', 'View', '&id='.$this->getID()); }
-
+	public function href_download() { return href('Download', 'File', '&id='.$this->getID()); }
+	
 	public function gdoHashcode() { return self::gdoHashcodeS($this->getVars(['dl_id', 'dl_title', 'dl_category', 'dl_file', 'dl_created', 'dl_creator'])); }
 
+	public function canEdit(GDO_User $user) { return $user->hasPermission('staff'); } 
 	public function canView(GDO_User $user) { return ($this->isAccepted() && (!$this->isDeleted())) || $user->isStaff(); }
 	public function canDownload(GDO_User $user)
 	{
@@ -137,15 +139,16 @@ final class GDO_Download extends GDO
 	
 	public function getLevel() { return $this->getVar('dl_level'); }
 	public function getPrice() { return $this->getVar('dl_price'); }
-	public function displayPrice() { return "€".$this->getVar('dl_price'); }
+	public function displayPrice() { return sprintf('€%.02f', $this->getPrice()); }
 	public function getType() { return $this->getFile()->getType(); }
 	public function getTitle() { return $this->getVar('dl_title'); }
 	public function displayInfo() { return $this->gdoMessage()->renderCell(); }
+	public function displayInfoText() { return $this->gdoMessage()->renderCell(); }
 	public function displaySize() { return $this->getFile()->displaySize(); }
 	
 	public function isAccepted() { return $this->getVar('dl_accepted') !== null; }
 	public function isDeleted() { return $this->getVar('dl_deleted') !== null; }
-	public function isPaid() { return $this->getPrice() !== null; }
+	public function isPaid() { return $this->getPrice() > 0; }
 	##############
 	### Render ###
 	##############
@@ -153,7 +156,11 @@ final class GDO_Download extends GDO
 	{
 	    return GDT_Template::responsePHP('Download', 'card/download.php', ['gdo' => $this]);
 	}
-
+	public function renderList()
+	{
+	    return GDT_Template::responsePHP('Download', 'list/download.php', ['download' => $this]);
+	}
+	
 	##############
 	### Static ###
 	##############

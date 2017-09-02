@@ -35,7 +35,7 @@ final class Module_Download extends GDO_Module
 			GDT_Checkbox::make('dl_download_guest')->initial('1'),
 			GDT_Checkbox::make('dl_votes')->initial('1'),
 			GDT_Checkbox::make('dl_vote_guest')->initial('1'),
-			GDT_Int::make('dl_votes_outcome')->unsigned()->initial('3'),
+			GDT_Int::make('dl_votes_outcome')->unsigned()->initial('1'),
 		);
 	}
 	public function cfgGuestUploads() { return $this->getConfigValue('dl_upload_guest'); }

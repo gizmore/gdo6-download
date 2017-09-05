@@ -123,7 +123,7 @@ final class GDO_Download extends GDO
 	public function getFileID() { return $this->getVar('dl_file'); }
 	
 	/**
-	 * @return User
+	 * @return GDO_User
 	 */
 	public function getCreator() { return $this->getValue('dl_creator'); }
 	public function getCreatorID() { return $this->getVar('dl_creator'); }

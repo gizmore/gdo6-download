@@ -50,7 +50,7 @@ final class GDO_DownloadToken extends GDO implements Orderable
 	}
 	
 	/**
-	 * @return User
+	 * @return GDO_User
 	 */
 	public function getUser() { return $this->getValue('dlt_user'); }
 	public function getUserID() { return $this->getVar('dlt_user'); }
@@ -62,7 +62,7 @@ final class GDO_DownloadToken extends GDO implements Orderable
 	public function getDowloadID() { return $this->getVar('dlt_download'); }
 	
 	/**
-	 * @return User
+	 * @return GDO_User
 	 */
 	public function getCreatedBy() { return $this->getValue('dlt_creator'); }
 	public function getCreatedAt() { return $this->getVar('dlt_created'); }

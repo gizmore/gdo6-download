@@ -1,6 +1,6 @@
 <?php 
 use GDO\Download\GDO_Download;
-use GDO\Template\GDT_Bar;
+use GDO\UI\GDT_Bar;
 use GDO\UI\GDT_Link;
 $navbar instanceof GDT_Bar;
 $count = GDO_Download::countDownloads();

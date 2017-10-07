@@ -2,9 +2,9 @@
 namespace GDO\Download;
 
 use GDO\Core\GDO_Module;
-use GDO\Template\GDT_Bar;
-use GDO\Type\GDT_Checkbox;
-use GDO\Type\GDT_Int;
+use GDO\UI\GDT_Bar;
+use GDO\DB\GDT_Checkbox;
+use GDO\DB\GDT_Int;
 /**
  * Download module with automated payment processing.
  * 

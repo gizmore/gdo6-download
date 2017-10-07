@@ -1,16 +1,15 @@
 <?php
 namespace GDO\Download\Method;
-
 use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;
-use GDO\Table\MethodQueryCards;
 use GDO\File\GDO_File;
 use GDO\Table\MethodQueryList;
 use GDO\User\GDO_User;
 /**
- * 
+ * Download overview
  * @author gizmore
- *
+ * @since 3.00
+ * @version 6.05
  */
 final class FileList extends MethodQueryList
 {

@@ -15,10 +15,10 @@ use GDO\Date\GDT_DateTime;
 use GDO\File\GDO_File;
 use GDO\File\GDT_File;
 use GDO\Payment\GDT_Money;
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Int;
-use GDO\Type\GDT_Message;
-use GDO\Type\GDT_String;
+use GDO\Core\GDT_Template;
+use GDO\DB\GDT_Int;
+use GDO\UI\GDT_Message;
+use GDO\DB\GDT_String;
 use GDO\User\GDT_Level;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
@@ -176,6 +176,6 @@ final class GDO_Download extends GDO
 	
 	public function gdoAfterCreate()
 	{
-		Cache::unset('gdo_download_count');
+		Cache::remove('gdo_download_count');
 	}
 }

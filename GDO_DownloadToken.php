@@ -7,9 +7,9 @@ use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_Object;
 use GDO\Payment\Orderable;
 use GDO\Payment\PaymentModule;
-use GDO\Template\GDT_Template;
-use GDO\Template\Message;
-use GDO\Type\GDT_Token;
+use GDO\Core\GDT_Template;
+use GDO\Core\GDT_Success;
+use GDO\DB\GDT_Token;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
 /**
@@ -25,13 +25,13 @@ final class GDO_DownloadToken extends GDO implements Orderable
 	#############
 	public function getOrderCancelURL(GDO_User $user) { return url('Download', 'FileList'); }
 	public function getOrderSuccessURL(GDO_User $user) { return url('Download', 'View', 'id='.$this->getDownloadID()); }
-	public function getOrderTitle(string $iso) { return tiso($iso, 'card_title_downloadtoken', [html($this->getDowload()->getTitle())]); }
+	public function getOrderTitle($iso) { return tiso($iso, 'card_title_downloadtoken', [html($this->getDowload()->getTitle())]); }
 	public function getOrderPrice() { return $this->getDowload()->getPrice(); }
 	public function canPayOrderWith(PaymentModule $module) { return true; }
 	public function onOrderPaid()
 	{
 		$this->insert();
-		return new Message('msg_download_purchased');
+		return GDT_Success::with('msg_download_purchased');
 	}
 
 	###########

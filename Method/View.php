@@ -22,6 +22,6 @@ final class View extends Method
 			throw new GDOError('err_gdo_not_found', [$table->gdoClassName(), $id]);
 		}
 		$tabs = $module->renderTabs();
-		return $tabs->add($dl->renderCard());
+		return $tabs->addHTML($dl->renderCard());
 	}
 }

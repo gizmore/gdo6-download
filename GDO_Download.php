@@ -154,11 +154,11 @@ final class GDO_Download extends GDO
 	##############
 	public function renderCard()
 	{
-	    return GDT_Template::responsePHP('Download', 'card/download.php', ['gdo' => $this]);
+	    return GDT_Template::php('Download', 'card/download.php', ['gdo' => $this]);
 	}
 	public function renderList()
 	{
-	    return GDT_Template::responsePHP('Download', 'list/download.php', ['download' => $this]);
+	    return GDT_Template::php('Download', 'list/download.php', ['download' => $this]);
 	}
 	
 	##############

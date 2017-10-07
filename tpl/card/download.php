@@ -40,7 +40,7 @@ if ($gdo->canDownload($user))
 }
 elseif ($gdo->canPurchase($user))
 {
-	echo GDT_Button::make('purchase')->icon('attach_money')->href(href('Download', 'Order', '&id='.$gdo->getID()))->renderCell();
+	echo GDT_Button::make('purchase')->icon('money')->href(href('Download', 'Order', '&id='.$gdo->getID()))->renderCell();
 }
 else
 {

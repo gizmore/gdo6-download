@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Download\Method;
 
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\Date\Time;
 use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;

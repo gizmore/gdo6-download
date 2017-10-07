@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Download;
 
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_Object;

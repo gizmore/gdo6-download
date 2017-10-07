@@ -3,7 +3,7 @@ namespace GDO\Download;
 
 use GDO\Category\GDT_Category;
 use GDO\DB\Cache;
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\DB\GDT_AutoInc;
 use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;

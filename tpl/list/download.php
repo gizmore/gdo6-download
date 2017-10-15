@@ -1,5 +1,3 @@
-<?php
-use GDO\Download\GDO_Download;
-$field instanceof GDO_Download;
+<?php /** @var \GDO_Download\GDO_Download $download **/
 ?>
 <li>Download</li>

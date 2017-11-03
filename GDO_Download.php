@@ -25,6 +25,7 @@ use GDO\User\GDO_User;
 use GDO\Vote\GDT_VoteCount;
 use GDO\Vote\GDT_VoteRating;
 use GDO\Vote\WithVotes;
+use GDO\UI\GDT_Title;
 /**
  * A download is votable, likeable, purchasable.
  * 
@@ -51,7 +52,7 @@ final class GDO_Download extends GDO
 	{
 		return array(
 			GDT_AutoInc::make('dl_id'),
-			GDT_String::make('dl_title')->notNull()->label('title'),
+			GDT_Title::make('dl_title')->notNull(),
 			GDT_Message::make('dl_info')->notNull()->label('info'),
 			GDT_Category::make('dl_category'),
 			GDT_File::make('dl_file')->notNull(),

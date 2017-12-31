@@ -6,6 +6,7 @@ use GDO\Core\Method;
 use GDO\Download\GDO_Download;
 use GDO\User\GDO_User;
 use GDO\Util\Common;
+use GDO\File\Method\GetFile;
 
 final class File extends Method
 {
@@ -23,6 +24,6 @@ final class File extends Method
 		
 		GDT_Hook::call('DownloadFile', $user, $download);
 		
-		return method('GWF', 'GetFile')->executeWithId($download->getFileID());
+		return GetFile::make()->executeWithId($download->getFileID());
 	}
 }

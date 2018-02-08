@@ -143,6 +143,7 @@ final class GDO_Download extends GDO
 	public function displayPrice() { return sprintf('€%.02f', $this->getPrice()); }
 	public function getType() { return $this->getFile()->getType(); }
 	public function getTitle() { return $this->getVar('dl_title'); }
+	public function displayTitle() { return $this->display('dl_title'); }
 	public function displayInfo() { return $this->gdoMessage()->renderCell(); }
 	public function displayInfoText() { return $this->gdoMessage()->renderList(); }
 	public function displaySize() { return $this->getFile()->displaySize(); }

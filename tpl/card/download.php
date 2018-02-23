@@ -7,6 +7,7 @@ use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Card;
 use GDO\UI\GDT_Paragraph;
+use GDO\Vote\GDT_VoteSelection;
 $gdo instanceof GDO_Download;
 $file = $gdo->getFile(); ?>
 <?php
@@ -25,7 +26,7 @@ $card->addFields(array(
 	GDT_Paragraph::withHTML(sprintf("%s: %s", t('type'), $file->getType())),
 	GDT_Paragraph::withHTML(sprintf("%s: %s", t('downloads'), $gdo->getDownloads())),
 	GDT_Paragraph::withHTML(sprintf("%s: %s", t('votes'), $gdo->gdoColumn('dl_votes')->gdo($gdo)->renderCell())),
-	GDT_Paragraph::withHTML(sprintf("%s: %s", t('rating'), $gdo->gdoColumn('dl_rating')->gdo($gdo)->renderCell())),
+	GDT_Paragraph::withHTML(sprintf("%s: %s %s", t('rating'), $gdo->gdoColumn('dl_rating')->gdo($gdo)->renderCell(), GDT_VoteSelection::make()->gdo($gdo)->renderForm())),
 	
 ));
 if ($gdo->isPaid())

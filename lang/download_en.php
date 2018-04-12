@@ -11,6 +11,7 @@ return array(
 'li_download_count' => 'Downloads: %s',
 'dlg_download_purchase_title' => 'Purchase',
 'li_download_price' => 'Price: %s',
+'btn_download' => 'Download',
 ###########################################################################
 'ft_download_order' => '[%s] Purchase File',
 'card_title_downloadtoken' => 'Purchase File &quot;%s&quot;',

@@ -12,7 +12,7 @@ final class Order extends Payment_Order
 {
 	public function getOrderable()
 	{
-	    $download = GDO_Download::table()->find(Common::getRequestString('id'));
+		$download = GDO_Download::table()->find(Common::getRequestString('id'));
 		$user = GDO_User::current()->persistent();
 		return GDO_DownloadToken::blank(array(
 			'dlt_user' => $user->getID(),

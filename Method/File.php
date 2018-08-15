@@ -17,7 +17,7 @@ final class File extends Method
 		$download = GDO_Download::table()->findById($id);
 		if (!$download->canDownload($user))
 		{
-		    GDO_Download::notFoundException(html($id));
+			GDO_Download::notFoundException(html($id));
 		}
 		
 		$download->increase('dl_downloads');

@@ -19,6 +19,6 @@ final class Admin extends MethodQueryTable
 	
 	public function getQuery()
 	{
-	    return GDO_Download::table()->select();
+		return GDO_Download::table()->select();
 	}
 }

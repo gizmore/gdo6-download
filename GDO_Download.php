@@ -88,7 +88,7 @@ final class GDO_Download extends GDO
 	{
 		if ($this->isPaid())
 		{
-		    if (!GDO_DownloadToken::hasToken($user, $this))
+			if (!GDO_DownloadToken::hasToken($user, $this))
 			{
 				return false;
 			}
@@ -156,11 +156,11 @@ final class GDO_Download extends GDO
 	##############
 	public function renderCard()
 	{
-	    return GDT_Template::php('Download', 'card/download.php', ['gdo' => $this]);
+		return GDT_Template::php('Download', 'card/download.php', ['gdo' => $this]);
 	}
 	public function renderList()
 	{
-	    return GDT_Template::php('Download', 'list/download.php', ['download' => $this]);
+		return GDT_Template::php('Download', 'list/download.php', ['download' => $this]);
 	}
 	
 	##############

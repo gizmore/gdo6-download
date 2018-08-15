@@ -12,7 +12,7 @@ final class Accept extends Method
 	
 	public function execute()
 	{
-	    $table = GDO_Download::table();
+		$table = GDO_Download::table();
 		$id = Common::getGetString('id', '0');
 		if ( (!($download = $table->find($id, false))) || 
 			 ($download->gdoHashcode() !== Common::getGetString('token')) )

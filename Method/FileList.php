@@ -27,22 +27,22 @@ final class FileList extends MethodQueryList
 	
 	public function gdoTable()
 	{
-	    return GDO_Download::table();
+		return GDO_Download::table();
 	}
 	
 	public function gdoQuery()
 	{
-	    $userid = GDO_User::current()->getID();
-	    return GDO_Download::table()->select('*, gdo_file.*, v.vote_value own_vote')->
-	       joinObject('dl_file')->
-	       join("LEFT JOIN gdo_downloadvote v ON v.vote_user = $userid AND v.vote_object = dl_id")->
-	       where("dl_deleted IS NULL AND dl_accepted IS NOT NULL");
+		$userid = GDO_User::current()->getID();
+		return GDO_Download::table()->select('*, gdo_file.*, v.vote_value own_vote')->
+		   joinObject('dl_file')->
+		   join("LEFT JOIN gdo_downloadvote v ON v.vote_user = $userid AND v.vote_object = dl_id")->
+		   where("dl_deleted IS NULL AND dl_accepted IS NOT NULL");
 	}
 	
 	public function gdoFilters()
 	{
-	    $gdo = GDO_Download::table();
-	    $file = GDO_File::table();
+		$gdo = GDO_Download::table();
+		$file = GDO_File::table();
 		return array(
 // 			GDT_EditButton::make(),
 // 			$gdo->gdoColumn('dl_id'),

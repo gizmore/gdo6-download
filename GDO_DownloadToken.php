@@ -42,7 +42,7 @@ final class GDO_DownloadToken extends GDO implements Orderable
 	{
 		return array(
 			GDT_User::make('dlt_user')->primary(),
-		    GDT_Object::make('dlt_download')->table(GDO_Download::table())->primary(),
+			GDT_Object::make('dlt_download')->table(GDO_Download::table())->primary(),
 			GDT_Token::make('dlt_token')->notNull(),
 			GDT_CreatedAt::make('dlt_created'),
 			GDT_CreatedBy::make('dlt_creator'),
@@ -78,7 +78,7 @@ final class GDO_DownloadToken extends GDO implements Orderable
 	##############
 	public function renderCard()
 	{
-	    return GDT_Template::php('Download', 'card/download_token.php', ['gdo' => $this]);
+		return GDT_Template::php('Download', 'card/download_token.php', ['gdo' => $this]);
 	}
 	
 }

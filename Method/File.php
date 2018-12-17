@@ -22,7 +22,7 @@ final class File extends Method
 		
 		$download->increase('dl_downloads');
 		
-		GDT_Hook::call('DownloadFile', $user, $download);
+		GDT_Hook::callHook('DownloadFile', $user, $download);
 		
 		return GetFile::make()->executeWithId($download->getFileID());
 	}

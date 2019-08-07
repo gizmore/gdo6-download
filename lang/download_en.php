@@ -5,15 +5,15 @@ return array(
 ###########################################################################
 'link_downloads' => '%s Downloads',
 'link_upload' => 'Upload',
-'ft_download_upload' => '[%s] Upload',
+'ft_download_upload' => 'Upload',
 ###########################################################################
-'list_filelist' => '[%s] Downloads',
+'list_filelist' => 'Downloads',
 'li_download_count' => 'Downloads: %s',
 'dlg_download_purchase_title' => 'Purchase',
 'li_download_price' => 'Price: %s',
 'btn_download' => 'Download',
 ###########################################################################
-'ft_download_order' => '[%s] Purchase File',
+'ft_download_order' => 'Purchase File',
 'card_title_downloadtoken' => 'Purchase File &quot;%s&quot;',
 'card_title_downloadprice' => 'Price: %s',
 ###########################################################################

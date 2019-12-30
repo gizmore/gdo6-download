@@ -81,4 +81,9 @@ final class GDO_DownloadToken extends GDO implements Orderable
 		return GDT_Template::php('Download', 'card/download_token.php', ['gdo' => $this]);
 	}
 	
+	public function renderOrderCard()
+	{
+		return $this->renderCard();
+	}
+	
 }

@@ -13,11 +13,13 @@ use GDO\Mail\Mail;
 use GDO\UI\GDT_Link;
 use GDO\User\GDO_User;
 /**
- * Download form.
+ * Download CRUD form.
+ * Sends approval mail.
  * 
  * @author gizmore
+ * @version 6.10
  * @since 5.0
- * @version 5.0
+ * 
  * @see GDO_Download
  */
 final class Crud extends MethodCrud
@@ -67,7 +69,7 @@ final class Crud extends MethodCrud
 		{
 			$gdo->saveVars(array(
 				'dl_accepted' => Time::getDate(),
-				'dl_acceptor' => GDO_User::SYSTEM_ID,
+				'dl_acceptor' => GDO_User::system()->getID(),
 			), false);
 		}
 		else
@@ -96,9 +98,7 @@ final class Crud extends MethodCrud
 		$dl = $this->gdo; $dl instanceof GDO_Download;
 
 		# Sender
-		$mail = new Mail();
-		$mail->setSender(GWF_BOT_NAME);
-		$mail->setSenderName(GWF_BOT_NAME);
+		$mail = Mail::botMail();
 		
 		# Body
 		$username = $user->displayNameLabel();
@@ -111,8 +111,8 @@ final class Crud extends MethodCrud
 		
 		$link = GDT_Link::anchor(url('Download', 'Approve', "&id={$dl->getID()}&token={$dl->gdoHashcode()}"));
 		$args = [$username, $sitename, $type, $size, $title, $info, $uploader, $link];
-		$mail->setBody(t('mail_body_download_pending', $args));
-		$mail->setSubject(t('mail_subj_download_pending', [$sitename]));
+		$mail->setBody(tusr($user, 'mail_body_download_pending', $args));
+		$mail->setSubject(tust($user, 'mail_subj_download_pending', [$sitename]));
 		
 		# Send
 		$mail->sendToUser($user);

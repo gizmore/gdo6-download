@@ -2,6 +2,7 @@
 return array(
 'gdo_download' => 'Download',
 'downloads' => 'Downloads',
+'download' => 'Download',
 ###########################################################################
 'link_downloads' => '%s Downloads',
 'link_upload' => 'Upload',

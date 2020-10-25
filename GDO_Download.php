@@ -18,7 +18,6 @@ use GDO\Payment\GDT_Money;
 use GDO\Core\GDT_Template;
 use GDO\DB\GDT_Int;
 use GDO\UI\GDT_Message;
-use GDO\DB\GDT_String;
 use GDO\User\GDT_Level;
 use GDO\User\GDT_User;
 use GDO\User\GDO_User;
@@ -26,12 +25,15 @@ use GDO\Vote\GDT_VoteCount;
 use GDO\Vote\GDT_VoteRating;
 use GDO\Vote\WithVotes;
 use GDO\UI\GDT_Title;
+
 /**
  * A download is votable, likeable, purchasable.
  * 
  * @author gizmore
+ * @version 6.10
  * @since 3.0
- * @version 5.0
+ * 
+ * @see GDO_DownloadToken
  */
 final class GDO_Download extends GDO
 {
@@ -151,6 +153,7 @@ final class GDO_Download extends GDO
 	public function isAccepted() { return $this->getVar('dl_accepted') !== null; }
 	public function isDeleted() { return $this->getVar('dl_deleted') !== null; }
 	public function isPaid() { return $this->getPrice() > 0; }
+
 	##############
 	### Render ###
 	##############
@@ -163,9 +166,9 @@ final class GDO_Download extends GDO
 		return GDT_Template::php('Download', 'list/download.php', ['download' => $this]);
 	}
 	
-	##############
-	### Static ###
-	##############
+	#############
+	### Cache ###
+	#############
 	public static function countDownloads()
 	{
 		if (false === ($cached = Cache::get('gdo_download_count')))
@@ -180,4 +183,10 @@ final class GDO_Download extends GDO
 	{
 		Cache::remove('gdo_download_count');
 	}
+	
+	public function gdoAfterDelete()
+	{
+	    Cache::remove('gdo_download_count');
+	}
+	
 }

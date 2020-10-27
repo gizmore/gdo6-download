@@ -16,7 +16,6 @@ use GDO\File\GDO_File;
 use GDO\File\GDT_File;
 use GDO\Payment\GDT_Money;
 use GDO\Core\GDT_Template;
-use GDO\DB\GDT_Int;
 use GDO\UI\GDT_Message;
 use GDO\User\GDT_Level;
 use GDO\User\GDT_User;
@@ -25,6 +24,7 @@ use GDO\Vote\GDT_VoteCount;
 use GDO\Vote\GDT_VoteRating;
 use GDO\Vote\WithVotes;
 use GDO\UI\GDT_Title;
+use GDO\DB\GDT_UInt;
 
 /**
  * A download is votable, likeable, purchasable.
@@ -58,7 +58,7 @@ final class GDO_Download extends GDO
 			GDT_Message::make('dl_info')->notNull()->label('info'),
 			GDT_Category::make('dl_category'),
 			GDT_File::make('dl_file')->notNull(),
-			GDT_Int::make('dl_downloads')->unsigned()->notNull()->initial('0')->editable(false)->label('downloads'),
+			GDT_UInt::make('dl_downloads')->notNull()->initial('0')->editable(false)->label('downloads'),
 			GDT_Money::make('dl_price'),
 			GDT_Level::make('dl_level')->notNull()->initial('0'),
 			GDT_VoteCount::make('dl_votes'),

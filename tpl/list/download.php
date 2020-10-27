@@ -3,30 +3,38 @@
  * This is the default download list item template.
  * It has no html at all, so it should be compatible with all themes :)
  */
-use GDO\Profile\GDT_ProfileLink;
 use GDO\UI\GDT_Button;
 use GDO\UI\GDT_ListItem;
 use GDO\UI\GDT_Paragraph;
-use GDO\UI\GDT_Headline;
 use GDO\User\GDO_User;
+use GDO\UI\GDT_Container;
+use GDO\UI\GDT_Label;
+use GDO\Vote\GDT_VoteSelection;
+use GDO\UI\GDT_Bar;
 
 # ListItem
-$li = GDT_ListItem::make();
+$li = GDT_ListItem::make()->gdo($download);
 
-# Image
-$li->image(GDT_ProfileLink::make()->forUser($download->getCreator()));
+$li->titleCreation($download->gdoColumn('dl_title'));
 
-# Title
-$li->title($download->gdoColumn('dl_title'));
+# Content
+$content = GDT_Container::make()->vertical();
+$content->addField($download->gdoColumn('dl_info'));
+if ($download->isPaid())
+{
+    $content->addField($download->gdoColumn('dl_price'));
+}
 
-# Subtitle
-$subtitle = t('li_download_count', [$download->getDownloads()]);
-$subtitle .= '&nbsp;&nbsp;';
-$subtitle .= t('li_download_price', [$download->displayPrice()]);
-$li->subtitle(GDT_Headline::withHTML($subtitle)->level(4));
+$li->content(GDT_Paragraph::withHTML($download->displayInfoText()));
 
 # Subtext
-$li->subtext(GDT_Paragraph::withHTML($download->displayInfoText()));
+$subc = GDT_Bar::make()->horizontal()->css('width', 'fit-content');
+$subc->addField(GDT_VoteSelection::make()->gdo($download));
+$subc->addField($download->gdoColumn('dl_rating'));
+$subc->addField($download->gdoColumn('dl_votes'));
+$subc->addField($download->gdoColumn('dl_downloads'));
+$subc->addField(GDT_Label::make('downloads'));
+$li->subtext($subc);
 
 # Actions
 $li->actions()->addFields(array(

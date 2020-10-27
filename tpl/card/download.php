@@ -1,37 +1,40 @@
 <?php
 /**
  * This template file (download card) uses only code to arrange the outcome.
+ * This way there is no need for an additional template.
+ * However you can override the template and can even introduce logic.
  */
-use GDO\Download\GDO_Download;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Card;
 use GDO\UI\GDT_Paragraph;
 use GDO\Vote\GDT_VoteSelection;
-$gdo instanceof GDO_Download;
+use GDO\Download\GDO_Download;
+
+/** @var $gdo GDO_Download **/
+
 $file = $gdo->getFile(); ?>
 <?php
 $user = GDO_User::current();
 
 // Card with title
 $card = GDT_Card::make('gdo-download')->gdo($gdo);
-$card->withCreator();
-$card->withCreated();
-$card->title($gdo->displayTitle());
-$card->subtitle($gdo->displayInfoText());
+
+$card->titleCreation($gdo->gdoColumn('dl_title'));
+// $card->subtitle($gdo->gdoMessage());
 
 // Card content
 $card->addFields(array(
-	GDT_Paragraph::withHTML(sprintf("%s: %s", t('name'), $file->displayName())),
-	GDT_Paragraph::withHTML(sprintf("%s: %s", t('type'), $file->getType())),
-	GDT_Paragraph::withHTML(sprintf("%s: %s", t('downloads'), $gdo->getDownloads())),
-	GDT_Paragraph::withHTML(sprintf("%s: %s", t('votes'), $gdo->gdoColumn('dl_votes')->gdo($gdo)->renderCell())),
-	GDT_Paragraph::withHTML(sprintf("%s: %s %s", t('rating'), $gdo->gdoColumn('dl_rating')->gdo($gdo)->renderCell(), GDT_VoteSelection::make()->gdo($gdo)->renderForm())),
+    $gdo->gdoColumn('dl_file'),
+//     $file->gdoColumn('file_type')->gdo($gdo->getFile()),
+    $gdo->gdoColumn('dl_downloads'),
+    $gdo->gdoColumn('dl_votes'),
+    $gdo->gdoColumn('dl_rating'),
 	
 ));
 if ($gdo->isPaid())
 {
-	$card->addField(GDT_Paragraph::withHTML(sprintf('%s: %s', t('price'), $gdo->displayPrice())));
+	$card->addField($gdo->gdoColumn('dl_price'));
 }
 
 // Card actions

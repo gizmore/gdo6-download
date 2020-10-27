@@ -9,9 +9,8 @@ return array(
 'ft_download_upload' => 'Upload',
 ###########################################################################
 'list_filelist' => 'Downloads',
-'li_download_count' => 'Downloads: %s',
+'download_listitem_subtext' => '%s downloads with a vote of %s counting %s votes.',
 'dlg_download_purchase_title' => 'Purchase',
-'li_download_price' => 'Price: %s',
 'btn_download' => 'Download',
 ###########################################################################
 'ft_download_order' => 'Purchase File',

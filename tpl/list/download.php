@@ -15,7 +15,7 @@ use GDO\UI\GDT_Bar;
 # ListItem
 $li = GDT_ListItem::make()->gdo($download);
 
-$li->titleCreation($download->gdoColumn('dl_title'));
+$li->creatorHeader($download->gdoColumn('dl_title'));
 
 # Content
 $content = GDT_Container::make()->vertical();

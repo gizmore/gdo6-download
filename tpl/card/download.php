@@ -20,7 +20,7 @@ $user = GDO_User::current();
 // Card with title
 $card = GDT_Card::make('gdo-download')->gdo($gdo);
 
-$card->titleCreation($gdo->gdoColumn('dl_title'));
+$card->creatorHeader($gdo->gdoColumn('dl_title'));
 // $card->subtitle($gdo->gdoMessage());
 
 // Card content

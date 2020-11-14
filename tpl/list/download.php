@@ -25,7 +25,7 @@ if ($download->isPaid())
     $content->addField($download->gdoColumn('dl_price'));
 }
 
-$li->content(GDT_Paragraph::withHTML($download->displayInfoText()));
+$li->content(GDT_Paragraph::make()->textRaw($download->displayInfoText()));
 
 # Subtext
 $subc = GDT_Bar::make()->horizontal()->css('width', 'fit-content');

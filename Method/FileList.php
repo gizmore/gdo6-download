@@ -30,7 +30,7 @@ final class FileList extends MethodQueryList
 		return GDO_Download::table();
 	}
 	
-	public function gdoQuery()
+	public function getQuery()
 	{
 		$userid = GDO_User::current()->getID();
 		return GDO_Download::table()->select('*, gdo_file.*, v.vote_value own_vote')->
@@ -39,7 +39,7 @@ final class FileList extends MethodQueryList
 		   where("dl_deleted IS NULL AND dl_accepted IS NOT NULL");
 	}
 	
-	public function gdoFilters()
+	public function gdoHeaders()
 	{
 		$gdo = GDO_Download::table();
 		$file = GDO_File::table();

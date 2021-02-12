@@ -57,7 +57,7 @@ final class Crud extends MethodCrud
 		{
 			if ($this->gdo && !$this->gdo->isAccepted())
 			{
-				$form->addField(GDT_Submit::make('accept'));
+				$form->actions()->addField(GDT_Submit::make('accept'));
 			}
 		}
 	}

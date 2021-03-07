@@ -142,7 +142,7 @@ final class GDO_Download extends GDO
 	
 	public function getLevel() { return $this->getVar('dl_level'); }
 	public function getPrice() { return $this->getVar('dl_price'); }
-	public function displayPrice() { return sprintf('€%.02f', $this->getPrice()); }
+	public function displayPrice() { return GDT_Money::renderPrice($this->getPrice()); }
 	public function getType() { return $this->getFile()->getType(); }
 	public function getTitle() { return $this->getVar('dl_title'); }
 	public function displayTitle() { return $this->display('dl_title'); }
@@ -161,6 +161,7 @@ final class GDO_Download extends GDO
 	{
 		return GDT_Template::php('Download', 'card/download.php', ['gdo' => $this]);
 	}
+	
 	public function renderList()
 	{
 		return GDT_Template::php('Download', 'list/download.php', ['download' => $this]);

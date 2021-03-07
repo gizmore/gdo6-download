@@ -1,18 +1,33 @@
 <?php
 namespace GDO\Download\Method;
+
 use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;
 use GDO\File\GDO_File;
 use GDO\Table\MethodQueryList;
 use GDO\User\GDO_User;
+use GDO\Table\GDT_Table;
+
 /**
- * Download overview
+ * Download overview.
  * @author gizmore
- * @since 3.00
- * @version 6.05
+ * @version 6.10.1
+ * @since 3.0.0
  */
 final class FileList extends MethodQueryList
 {
+    public function getTitle()
+    {
+        $count = GDO_Download::countDownloads();
+        return t('link_downloads', [$count]);
+    }
+    
+    protected function setupTitle(GDT_Table $table)
+    {
+        $count = GDO_Download::countDownloads();
+        $table->title('link_downloads', [$count]);
+    }
+    
 	public function isGuestAllowed()
 	{
 		return Module_Download::instance()->cfgGuestDownload();

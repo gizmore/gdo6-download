@@ -63,9 +63,9 @@ final class Module_Download extends GDO_Module
 	
 	public function onInitSidebar()
 	{
-// 	    if ($this->cfgHookLeftBar())
+	    if ($this->cfgHookLeftBar())
 	    {
-	        $count = GDO_Link::getCounter();
+	        $count = GDO_Download::countDownloads();
 	        $link = GDT_Link::make()->label('link_downloads', [$count])->href(href('Download', 'FileList'));
 	        GDT_Page::$INSTANCE->leftNav->addField($link);
 	    }

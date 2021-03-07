@@ -18,8 +18,9 @@ final class FileList extends MethodQueryList
 {
     public function getTitle()
     {
+        $key = $this->getTitleLangKey();
         $count = GDO_Download::countDownloads();
-        return t('link_downloads', [$count]);
+        return t($key, [$count]);
     }
     
     protected function setupTitle(GDT_Table $table)

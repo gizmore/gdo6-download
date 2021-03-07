@@ -7,14 +7,12 @@
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
 use GDO\UI\GDT_Card;
-use GDO\UI\GDT_Paragraph;
-use GDO\Vote\GDT_VoteSelection;
 use GDO\Download\GDO_Download;
 
 /** @var $gdo GDO_Download **/
 
-$file = $gdo->getFile(); ?>
-<?php
+// $file = $gdo->getFile();
+
 $user = GDO_User::current();
 
 // Card with title

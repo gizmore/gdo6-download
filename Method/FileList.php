@@ -49,7 +49,7 @@ final class FileList extends MethodQueryList
 	public function getQuery()
 	{
 		$userid = GDO_User::current()->getID();
-		return GDO_Download::table()->select('*, gdo_file.*, v.vote_value own_vote')->
+		return GDO_Download::table()->select('gdo_download.*, gdo_file.*, v.vote_value own_vote')->
 		   joinObject('dl_file')->
 		   join("LEFT JOIN gdo_downloadvote v ON v.vote_user = $userid AND v.vote_object = dl_id")->
 		   where("dl_deleted IS NULL AND dl_accepted IS NOT NULL");

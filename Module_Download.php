@@ -6,7 +6,6 @@ use GDO\DB\GDT_Checkbox;
 use GDO\DB\GDT_Int;
 use GDO\UI\GDT_Link;
 use GDO\UI\GDT_Page;
-use GDO\Links\GDO_Link;
 
 /**
  * Download module with automated payment processing.
@@ -19,8 +18,8 @@ use GDO\Links\GDO_Link;
  * @see Module_Payment
  * @see GDO_Download
  * 
- * @version 6.10
- * @since 3.0
+ * @version 6.10.1
+ * @since 3.5.0
  */
 final class Module_Download extends GDO_Module
 {

@@ -7,8 +7,6 @@ use GDO\Download\GDO_Download;
 use GDO\Download\Module_Download;
 use GDO\User\GDO_User;
 use GDO\DB\GDT_Object;
-use GDO\Core\GDT_Response;
-use GDO\UI\GDT_Page;
 
 /**
  * View a download for downloading or purchase.

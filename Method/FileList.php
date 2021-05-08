@@ -11,7 +11,7 @@ use GDO\Table\GDT_Table;
 /**
  * Download overview.
  * @author gizmore
- * @version 6.10.1
+ * @version 6.10.3
  * @since 3.0.0
  */
 final class FileList extends MethodQueryList

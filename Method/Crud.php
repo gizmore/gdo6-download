@@ -17,8 +17,8 @@ use GDO\User\GDO_User;
  * Sends approval mail.
  * 
  * @author gizmore
- * @version 6.10
- * @since 5.0
+ * @version 6.10.3
+ * @since 5.0.0
  * 
  * @see GDO_Download
  */
@@ -31,7 +31,7 @@ final class Crud extends MethodCrud
 	{
 		$response = parent::execute();
 		$tabs = Module_Download::instance()->renderTabs();
-		return $tabs->add($response);
+		return $tabs->addField($response);
 	}
 	
 	protected function crudCreateTitle()

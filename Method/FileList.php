@@ -38,7 +38,7 @@ final class FileList extends MethodQueryList
 	{
 		$response = parent::execute();
 		$tabs = Module_Download::instance()->renderTabs();
-		return $tabs->add($response);
+		return $tabs->addField($response);
 	}
 	
 	public function gdoTable()

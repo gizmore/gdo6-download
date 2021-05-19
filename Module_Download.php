@@ -57,7 +57,9 @@ final class Module_Download extends GDO_Module
 	##############
 	public function renderTabs()
 	{
-		return $this->responsePHP('tabs.php');
+	    GDT_Page::$INSTANCE->topTabs->addField(
+	        $this->templatePHP('tabs.php')
+        );
 	}
 	
 	public function onInitSidebar()

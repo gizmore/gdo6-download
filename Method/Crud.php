@@ -27,11 +27,9 @@ final class Crud extends MethodCrud
 	public function gdoTable() { return GDO_Download::table(); }
 	public function hrefList() { return href('Download', 'FileList'); }
 	
-	public function execute()
+	public function beforeExecute()
 	{
-		$response = parent::execute();
-		$tabs = Module_Download::instance()->renderTabs();
-		return $tabs->addField($response);
+		Module_Download::instance()->renderTabs();
 	}
 	
 	protected function crudCreateTitle()

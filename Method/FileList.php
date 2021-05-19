@@ -34,11 +34,9 @@ final class FileList extends MethodQueryList
 		return Module_Download::instance()->cfgGuestDownload();
 	}
 	
-	public function execute()
+	public function beforeExecute()
 	{
-		$response = parent::execute();
-		$tabs = Module_Download::instance()->renderTabs();
-		return $tabs->addField($response);
+	    Module_Download::instance()->renderTabs();
 	}
 	
 	public function gdoTable()

@@ -11,16 +11,15 @@ use GDO\Table\GDT_Table;
 /**
  * Download overview.
  * @author gizmore
- * @version 6.10.3
+ * @version 6.10.4
  * @since 3.0.0
  */
 final class FileList extends MethodQueryList
 {
     public function getTitle()
     {
-        $key = $this->getTitleLangKey();
         $count = GDO_Download::countDownloads();
-        return t($key, [$count]);
+        return t('link_downloads', [$count]);
     }
     
     protected function setupTitle(GDT_Table $table)

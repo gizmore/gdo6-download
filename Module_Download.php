@@ -18,7 +18,7 @@ use GDO\UI\GDT_Page;
  * @see Module_Payment
  * @see GDO_Download
  * 
- * @version 6.10.1
+ * @version 6.10.6
  * @since 3.5.0
  */
 final class Module_Download extends GDO_Module
@@ -30,6 +30,13 @@ final class Module_Download extends GDO_Module
 	public function onLoadLanguage() { return $this->loadLanguage('lang/download'); }
 	public function getClasses() { return [GDO_Download::class, GDO_DownloadVote::class, GDO_DownloadToken::class]; }
 	public function href_administrate_module() { return href('Download', 'Admin'); }
+	
+	public function getDependencies()
+	{
+		return [
+			'Payment',
+		];
+	}
 
 	##############
 	### Config ###

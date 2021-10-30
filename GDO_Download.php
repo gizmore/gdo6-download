@@ -55,7 +55,7 @@ final class GDO_Download extends GDO
 		return array(
 			GDT_AutoInc::make('dl_id'),
 			GDT_Title::make('dl_title')->notNull(),
-			GDT_Message::make('dl_info')->notNull()->label('info'),
+			GDT_Message::make('dl_info')->label('info'),
 			GDT_Category::make('dl_category'),
 			GDT_File::make('dl_file')->notNull(),
 			GDT_UInt::make('dl_downloads')->notNull()->initial('0')->editable(false)->label('downloads'),
@@ -78,9 +78,12 @@ final class GDO_Download extends GDO
 	### Bridge ###
 	##############
 	
-	public function href_edit() { return href('Download', 'Crud', '&id='.$this->getID()); }
-	public function href_view() { return href('Download', 'View', '&id='.$this->getID()); }
-	public function href_download() { return href('Download', 'File', '&id='.$this->getID()); }
+	public function href_edit() { return $this->href_with('Crud'); }
+	public function href_view() { return $this->href_with('View'); }
+	public function href_download() { return $this->href_with('File'); }
+
+	private function href_with($method) { return href('Download', $method, $this->href_appendix()); }
+	private function href_appendix() { return '&title=' . seo($this->displayTitle()) . '&id=' . $this->getID(); }
 	
 	public function gdoHashcode() { return self::gdoHashcodeS($this->getVars(['dl_id', 'dl_title', 'dl_category', 'dl_file', 'dl_created', 'dl_creator'])); }
 

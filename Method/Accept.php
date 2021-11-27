@@ -13,9 +13,9 @@ final class Accept extends Method
 	public function execute()
 	{
 		$table = GDO_Download::table();
-		$id = Common::getGetString('id', '0');
+		$id = Common::getRequestString('id', '0');
 		if ( (!($download = $table->find($id, false))) || 
-			 ($download->gdoHashcode() !== Common::getGetString('token')) )
+			 ($download->gdoHashcode() !== Common::getRequestString('token')) )
 		{
 			return $this->error('err_gdo_not_found', [$table->gdoClassName(), get_called_class(), html($id)]);
 		}

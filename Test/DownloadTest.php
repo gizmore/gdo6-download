@@ -31,8 +31,9 @@ final class DownloadTest extends TestCase
             'dl_info' => 'A test file for upload',
             'dl_level' => '0',
         ];
-        MethodTest::make()->method($m)->parameters($p)->execute();
-        
+        $r = MethodTest::make()->method($m)->parameters($p);
+        $r = $r->execute('create');
+        $out = $r->renderHTML();
         
         $path = Module_Tests::instance()->filePath(
             'Test/data/01_BAND_SCHEIBE_VORFALL_-_INTRO_4.mp3');
@@ -43,7 +44,7 @@ final class DownloadTest extends TestCase
             'dl_info' => 'Some punk music',
             'dl_level' => '1',
         ];
-        MethodTest::make()->method($m)->parameters($p)->execute();
+        MethodTest::make()->method($m)->parameters($p)->execute('create');
         
         
         assertEquals(2, GDO_Download::table()->countWhere(), 'Test upload of an mp3 file.');
